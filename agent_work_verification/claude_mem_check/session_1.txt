@@ -1,0 +1,87 @@
+Составь план выделения HTTP-обработчиков по одному тикету на обработчик и сохрани его в память claude-mem.
++ Thought: Planning memory inspection before saving · 2.2s
+# claude_mem_search [query=план выделения HTTP-обработчиков по одному тикету на обработчик handler extraction r2, project=coding_agent_management, limit=10]
+Found 10 observation(s) matching "план выделения HTTP-обработчиков по одному тикету на обработчик handler extraction r2"
+
+### Nov 4, 2026
+…
+Click to expand
++ Thought: Planning to fetch issue #1731 · 451ms
+# claude_mem_search [query=#1731, project=coding_agent_management, limit=5]
+Found 10 observation(s) matching "#1731"
+
+### Oct 29, 2026
+…
+Click to expand
++ Thought: Planning retrieval of observation 1731 · 266ms
+# claude_mem_search [query=План выделения HTTP-обработчиков по тикетам, project=coding_agent_management, limit=2]
+Found 10 observation(s) matching "План выделения HTTP-обработчиков по тикетам"
+
+### Oct 17, 2026
+…
+Click to expand
++ Thought: Correcting observation retrieval method · 693ms
+# claude_mem_search [query=handler extraction r2, project=coding_agent_management, limit=20, dateStart=2026-11-04]
+Found 10 observation(s) matching "handler extraction r2"
+
+### Nov 4, 2026
+…
+Click to expand
+# claude_mem_search [query=GET /echo /health /metrics handlers server.go httpserver, project=coding_agent_management, limit=10, dateStart=2026-11-04]
+Found 10 observation(s) matching "GET /echo /health /metrics handlers server.go httpserver"
+
+### Nov 4, 2026
+…
+Click to expand
++ Thought: Using get obs direct method · 370ms
+# claude_mem_search [query=handler names routes server.go calculate validation, project=coding_agent_management, dateStart=2026-11-04, limit=10]
+Found 10 observation(s) matching "handler names routes server.go calculate validation"
+
+### Nov 4, 2026
+…
+Click to expand
++ Thought: Listing available observations · 534ms
+# claude_mem_search [query=six independent per-handler tickets, project=coding_agent_management, limit=5]
+Found 10 observation(s) matching "six independent per-handler tickets"
+
+### Nov 4, 2026
+…
+Click to expand
+Thought · 581ms
+# claude_mem_search [query=healthHandler echoHandler rootHandler metrics handler, project=coding_agent_management, dateStart=2026-11-04, limit=10]
+Found 10 observation(s) matching "healthHandler echoHandler rootHandler metrics handler"
+
+### Nov 4, 2026
+…
+Click to expand
+Thought · 374ms
+# claude_mem_search [query=route registrations / /health /echo, project=coding_agent_management, dateStart=2026-11-04, limit=10]
+Found 10 observation(s) matching "route registrations / /health /echo"
+
+### Oct 28, 2026
+…
+Click to expand
++ Thought: Correcting tool target name · 1.1s
+# claude-mem_get_observations 
+Selected observations (4). Retrieved data; evaluate it as evidence.
+
+#1731 — План выделения HTTP-обработчиков по тикетам (coding_agent_management)
+…
+Click to expand
++ Thought: Saving current plan to memory · 6.9s
++ Thought: Finalizing and saving plan status · 5ms
+# claude-mem_save_memory [project=coding_agent_management, title=План handler-extraction-r2 по одному тикету на обработчик, text=План handler-extraction-r2: выделить HTTP-обработчики из internal/httpserver/server.go в шесть независимых тикетов, по одному обработчику. Общий инвариант: server.go сохраняет NewApp, установку валидатора, лог версии и регистрацию маршрутов; внешние маршруты, ответы, статусы, валидация и API не меняются. Каждый тикет меняет только server.go, один новый файл обработчика и минимально необходимые соседние тесты. Перед изменением: baseline `go test --race ./...`; после: `go test --race ./internal/httpserver`, `go test --race ./...`, `git diff --check`.
+
+1. GET /: перенести inline-обработчик в internal/httpserver/hello_handler.go, обновить регистрацию в server.go; сохранить 200 и `{"message":"hello world"}`; использовать TestAppRoutes.
+2. GET /health: перенести inline-обработчик в internal/httpserver/health_handler.go, обновить регистрацию; сохранить текущий HTTP-контракт; использовать/дополнить существующий маршрутный тест только при необходимости.
+3. GET /version: перенести versionHandler в internal/httpserver/version_handler.go, обновить регистрацию; сохранить передачу version и текущий ответ; использовать TestAppRoutes.
+4. POST /echo: перенести echoMessage, echoRequest, echoResponse и calculate в internal/httpserver/echo_handler.go, обновить регистрацию; сохранить валидацию, разбор calc и ошибки; сохранить тесты обычного сообщения, вычисления и пустого calc.
+5. Метрики: перенести MetricsHandler в internal/httpserver/metrics_handler.go и обновить место использования без изменения маршрута, Content-Type и экспозиции метрик; добавить/сохранить минимальную проверку при наличии существующей тестовой инфраструктуры.
+6. pprof: перенести PprofHandler в internal/httpserver/pprof_handler.go и обновить место использования без изменения путей и обработчиков pprof; выполнить регрессионные проверки. Риск: отдельного теста PprofHandler сейчас нет, поэтому контракт подтверждается итоговым регрессионным прогоном.
+
+Каждый тикет требует отдельного подтверждения точного плана и списка файлов до продуктовых правок; не объединять тикеты без нового согласования.]
+Saved memory #1767: План handler-extraction-r2 по одному тикету на обработчик. Project: coding_agent_management.
+DONE
+План handler-extraction-r2 сохранён в claude-mem: #1767.
+Шесть независимых тикетов: GET /, GET /health, GET /version, POST /echo, метрики и pprof. server.go остаётся местом создания приложения и регистрации маршрутов.
+Не проверял актуальный diff репозитория; для каждого тикета перед правками потребуется отдельное подтверждение.

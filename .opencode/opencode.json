@@ -1,0 +1,75 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "build",
+  "skills": {
+    "paths": [
+      "../.agents/skills"
+    ]
+  },
+  "mcp": {
+    "servers": {
+      "playwright": {
+        "type": "local",
+        "command": [
+          "npx",
+          "-y",
+          "@playwright/mcp@latest"
+        ]
+      }
+    }
+  },
+  "permission": {
+    "*": "ask",
+    "webfetch": "allow",
+    "websearch": "allow",
+    "context7_*": "allow",
+    "lsp": "allow",
+    "todowrite": "allow",
+    "question": "allow",
+    "skill": "allow",
+    "task": "allow",
+    "grep": "allow",
+    "glob": "allow",
+    "read": {
+      "*": "allow",
+      "*.env": "deny",
+      "*.env.*": "deny"
+    },
+    "bash": {
+      "*": "ask",
+      "git diff*": "allow",
+      "git status*": "allow",
+      "git log*": "allow",
+      "git show*": "allow",
+      "git blame*": "allow",
+      "git branch*": "allow",
+      "git ls-files*": "allow",
+      "git ls-tree*": "allow",
+      "git cat-file*": "allow",
+      "git rev-parse*": "allow",
+      "git describe*": "allow",
+      "git remote*": "allow",
+      "cat*": "allow",
+      "head*": "allow",
+      "tail*": "allow",
+      "wc*": "allow",
+      "ls*": "allow",
+      "tree*": "allow",
+      "find* -type f*": "allow",
+      "find* -type d*": "allow",
+      "bunx tsc --noEmit*": "allow",
+      "bun run lint*": "allow",
+      "bun run build": "allow",
+      "go test*": "allow",
+      "golangci-lint run*": "allow",
+      "git commit*": "allow",
+      "git push*": "ask",
+      "rm -rf *": "deny"
+    },
+    "claude-mem_*": "allow",
+    "claude_mem_work_state_read": "allow",
+    "claude_mem_work_state_write": "allow",
+    "claude_mem_search": "allow",
+    "claude_mem_save_memory": "allow"
+  }
+}

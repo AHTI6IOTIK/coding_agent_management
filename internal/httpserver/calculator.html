@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Calculator</title>
+  </head>
+  <body>
+    <main>
+      <h1>Calculator</h1>
+      <form id="calculator">
+        <label for="expression">Expression</label>
+        <input id="expression" name="expression" required>
+        <button type="submit">Calculate</button>
+      </form>
+      <output id="result" role="status"></output>
+    </main>
+    <script>
+      document.getElementById("calculator").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const response = await fetch("/echo", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: "calculator", calc: document.getElementById("expression").value }),
+        });
+        const data = await response.json();
+        document.getElementById("result").textContent = data.result;
+      });
+    </script>
+  </body>
+</html>

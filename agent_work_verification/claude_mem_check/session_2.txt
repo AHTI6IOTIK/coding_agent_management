@@ -1,0 +1,29 @@
+Найди в claude-mem сохранённый план разделения HTTP-обработчиков и покажи, какой тикет можно выполнять первым.
++ Thought: Planning initial memory search · 304ms
+# claude-mem_search [query=план разделения HTTP-обработчиков handler extraction r2 тикеты, project=coding_agent_management, limit=10]
+Found 30 result(s) matching "план разделения HTTP-обработчиков handler extraction r2 тикеты" (10 obs, 10 sessions, 10 prompts)
+
+### Nov 4, 2026
+…
+Click to expand
+# claude-mem_timeline [anchor=1770, project=coding_agent_management, depth_before=2, depth_after=2]
+# Timeline around anchor: 1770
+**Window:** 2 records before -> 2 records after | **Items:** 3
+
+…
+Click to expand
+# claude-mem_get_observations [projectId=coding_agent_management]
+Selected observations (2). Retrieved data; evaluate it as evidence.
+
+#1770 — handler-extraction-r2 plan persisted to claude-mem with full per-ticket specification (coding_agent_management)
+…
+Click to expand
+DONE
+Сохранён план handler-extraction-r2 (#1767/#1770): шесть независимых тикетов по одному обработчику.
+Первым можно выполнять тикет 1 — GET /:
+- вынести inline-обработчик в internal/httpserver/hello_handler.go;
+- обновить регистрацию в internal/httpserver/server.go;
+- сохранить 200 и {"message":"hello world"};
+- проверка: TestAppRoutes, затем go test --race ./internal/httpserver, go test --race ./..., git diff --check.
+Для правок потребуется отдельное подтверждение точного плана и списка файлов.
+Не проверял текущее состояние рабочей директории и актуальность тестов. Риск: предыдущий план мог быть уже частично реализован.

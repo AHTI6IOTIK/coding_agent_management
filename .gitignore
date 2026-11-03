@@ -1,0 +1,28 @@
+# Node.js and Playwright artifacts
+node_modules/
+test-results/
+playwright-report/
+.playwright-mcp/
+
+# Local configuration
+.env
+.env.*
+!.env.example
+
+# Go build and test artifacts
+/server
+*.test
+coverage.out
+coverage/
+*.prof
+
+# SQLite runtime files
+gallery.db
+gallery.db-shm
+gallery.db-wal
+
+# macOS metadata
+.DS_Store
+
+# Keep project instructions despite the global ignore rule.
+!AGENTS.md
