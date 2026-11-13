@@ -24,5 +24,19 @@ gallery.db-wal
 # macOS metadata
 .DS_Store
 
+# GSD Core runtime (regenerable: npx @opengsd/gsd-core@latest --opencode --local).
+# Vendored files embed machine-specific absolute paths — keep them local-only.
+.opencode/gsd-core/
+.opencode/agents/
+.opencode/commands/gsd-*
+.opencode/hooks/
+.opencode/plugins/
+.opencode/scripts/
+.opencode/skills/
+.opencode/settings.json
+.opencode/.gsd-profile
+.opencode/gsd-*.json
+.opencode/gsd-migration-journal/
+
 # Keep project instructions despite the global ignore rule.
 !AGENTS.md
