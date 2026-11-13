@@ -59,7 +59,7 @@ Deferred to future release. Tracked but not in current roadmap.
 | QUAL-02 | Phase 2 | Pending |
 | GAL-01 | Phase 3 | Pending |
 | GAL-02 | Phase 3 | Pending |
-| GAL-03 | Phase 4 | Pending |
+| GAL-03 | Phase 3 | Pending |
 | QUAL-01 | Phase 1 | Pending |
 
 **Coverage:**
